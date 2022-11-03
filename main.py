@@ -4,17 +4,20 @@ from itertools import permutations
 import tkinter as tk
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# if you have tesseract error
 
 cool_combo_4 = [('AoE', 'Slow'), ('Caster', 'Slow'), ('DP-Recovery', 'Healing'),
                 ('DPS', 'Slow'), ('Guard', 'Slow'), ('Healing', 'Support'),
-                ('Melle', 'Slow'), ('Ranged', 'Survival'), ('Vanguard', 'Healing'),
-                ('AoE', 'Debuff'), ('Caster', 'Debuff'), ('Sniper', 'Debuff')]
+                ('Melee', 'Slow'), ('Ranged', 'Survival'), ('Vanguard', 'Healing'),
+                ('AoE', 'Debuff'), ('Caster', 'Debuff'), ('Sniper', 'Debuff'), ('DPS', 'Support'),
+                ('Sniper', 'Survival'), ('Sniper', 'Slow')]
 
 cool_combo_5 = [('DPS', 'Healing'), ('Healing', 'Slow'), ('Fast-Redeploy', 'Debuff'),
                 ('DP-Recovery', 'Support'), ('DPS', 'Shift'), ('Defender', 'Shift'), ('Defender', 'DPS'),
-                ('Defender', 'Survival'), ('Defense', 'DPS'), ('Defense', 'Shift'), ('Defence', 'Survival'),
+                ('Defender', 'Survival'), ('Defense', 'DPS'), ('Defense', 'Shift'), ('Defense', 'Survival'),
                 ('Melee', 'Debuff'), ('Shift', 'Slow'), ('Specialist', 'Slow'), ('Survival', 'Specialist'),
-                ('Supporter', 'DPS'), ('Supporter', 'Debuff'), ('Vanguard', 'Support')]
+                ('Supporter', 'DPS'), ('Supporter', 'Debuff'), ('Vanguard', 'Support'),
+                ('Caster', 'Healing')]
 
 
 def calculate_tags():
@@ -26,7 +29,7 @@ def calculate_tags():
         image_to_invert = Image.open('1.png')
         image_to_invert = image_to_invert.convert('L')
         inverted_image = ImageOps.invert(image_to_invert)
-        #image_to_invert = image_to_invert.convert('1')
+        # image_to_invert = image_to_invert.convert('1')
         inverted_image.save('1.png', 'PNG')
         image_to_con = Image.open('1.png')
         enhancer = ImageEnhance.Contrast(image_to_con)
@@ -35,11 +38,10 @@ def calculate_tags():
     except AttributeError:
         pass
 
-    tag_list = pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')
+    tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).strip(',.-_+~`')
     # tag_list = 'Debuff Supporter Caster Defense Slow'
     txt_edit.insert(tk.END, f'{tag_list.split()}\n')
     perm_tags = list(permutations(tag_list.split(), 2))
-
     flag = False
 
     for i in perm_tags:

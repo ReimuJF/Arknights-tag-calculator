@@ -38,7 +38,7 @@ def calculate_tags():
     tag_list = pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')
     # tag_list = 'Debuff Supporter Caster Defense Slow'
     txt_edit.insert(tk.END, f'{tag_list.split()}\n')
-    perm_tags = list(permutations(tag_list, 2))
+    perm_tags = list(permutations(tag_list.split(), 2))
 
     flag = False
 

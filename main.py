@@ -17,7 +17,7 @@ cool_combo_5 = [('DPS', 'Healing'), ('Healing', 'Slow'), ('Fast-Redeploy', 'Debu
                 ('Defender', 'Survival'), ('Defense', 'DPS'), ('Defense', 'Shift'), ('Defense', 'Survival'),
                 ('Melee', 'Debuff'), ('Shift', 'Slow'), ('Specialist', 'Slow'), ('Survival', 'Specialist'),
                 ('Supporter', 'DPS'), ('Supporter', 'Debuff'), ('Vanguard', 'Support'),
-                ('Caster', 'Healing')]
+                ('Caster', 'Healing'), ('Defense', 'Guard')]
 
 
 def calculate_tags():

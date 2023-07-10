@@ -44,6 +44,7 @@ def read_image():
     tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
     # tag_list = 'Debuff Supporter Caster Defense Slow'
     get_combinations(tag_list.split())
+  
 def get_combinations(tag_list):
     txt_edit.insert(tk.END, f'{tag_list}\n')
     flag = False

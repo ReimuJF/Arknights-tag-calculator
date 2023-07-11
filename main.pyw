@@ -3,7 +3,7 @@ from PIL import Image, ImageGrab, ImageOps, ImageEnhance
 from itertools import permutations
 import tkinter as tk
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+#pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # if you have tesseract error
 
 cool_combo_4 = {('AoE', 'Slow'), ('Caster', 'Slow'), ('DP-Recovery', 'Healing'),
@@ -36,16 +36,21 @@ def get_image():
         enhancer = ImageEnhance.Contrast(image_to_con)
         image_out = enhancer.enhance(3)
         image_out.save('1.png', 'PNG')
+        return image_out
+        #image_out.save('1.png', 'PNG')
     except AttributeError:
         pass
-    read_image()
 
-def read_image():
-    tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
+def read_image() -> list:
+    #tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
+    image = get_image()
+    o_image = image if image else Image.open('1.png')
+    tag_list = (pytesseract.pytesseract.image_to_string(o_image, config='--psm 12')).replace(',', '')
     # tag_list = 'Debuff Supporter Caster Defense Slow'
-    get_combinations(tag_list.split())
+    return tag_list.split()
   
-def get_combinations(tag_list):
+def get_combinations():
+    tag_list = read_image()
     txt_edit.insert(tk.END, f'{tag_list}\n')
     flag = False
     for i in tag_list:
@@ -76,12 +81,14 @@ if __name__ == '__main__':
     window.columnconfigure(1, minsize=100, weight=1)
     window.resizable(width=False, height=False)
 
+    window.iconbitmap('icon.ico')
+
     frame_buttons = tk.Frame(window, bd=2)
 
     txt_edit = tk.Text(window)
     txt_edit.grid(row=0, column=1, sticky='wn')
 
-    btn_calc = tk.Button(frame_buttons, text='Calculate Tags', command=get_image)
+    btn_calc = tk.Button(frame_buttons, text='Calculate Tags', command=get_combinations)
     btn_calc.grid(row=0, column=0, sticky='we', padx=0, pady=5)
     frame_buttons.grid(row=0, column=0, sticky='ns')
     window.mainloop()

@@ -21,7 +21,7 @@ cool_combo_5 = {('DPS', 'Healing'), ('Healing', 'Slow'), ('Fast-Redeploy', 'Debu
                 ('Nuker', 'Sniper'), ('Nuker', 'Ranged'), ('Specialist', 'DPS')}
 
 guaranteed = {'Top', 'Nuker', 'Specialist', 'Summon', 'Support',
-              'Debuff', 'Crowd-Control', 'Senior', 'Shift', 'Robot', 'Fast-Redeploy'}
+              'Debuff', 'Crowd-Control', 'Senior', 'Shift', 'Fast-Redeploy'}
 
 def get_image():
     txt_edit.delete("1.0", tk.END)

@@ -18,7 +18,7 @@ cool_combo_5 = {('DPS', 'Healing'), ('Healing', 'Slow'), ('Fast-Redeploy', 'Debu
                 ('Melee', 'Debuff'), ('Shift', 'Slow'), ('Specialist', 'Slow'), ('Survival', 'Specialist'),
                 ('Supporter', 'DPS'), ('Supporter', 'Debuff'), ('Vanguard', 'Support'),
                 ('Caster', 'Healing'), ('Defense', 'Guard'), ('AoE', 'Debuff'),
-                ('Nuker', 'Sniper'), ('Nuker', 'Ranged'), ('Specialist', 'DPS')}
+                ('Nuker', 'Sniper'), ('Nuker', 'Ranged'), ('Specialist', 'DPS'), ("Support", "Survival")}
 
 guaranteed = {'Top', 'Nuker', 'Specialist', 'Summon', 'Support',
               'Debuff', 'Crowd-Control', 'Senior', 'Shift', 'Fast-Redeploy'}

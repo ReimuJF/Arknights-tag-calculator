@@ -10,9 +10,9 @@ cool_combo_4 = {('AoE', 'Slow'), ('Caster', 'Slow'), ('DP-Recovery', 'Healing'),
                 ('DPS', 'Slow'), ('Guard', 'Slow'), ('Healing', 'Support'),
                 ('Melee', 'Slow'), ('Ranged', 'Survival'), ('Vanguard', 'Healing'),
                 ('AoE', 'Debuff'), ('Caster', 'Debuff'), ('Sniper', 'Debuff'), ('DPS', 'Support'),
-                ('Sniper', 'Survival'), ('Sniper', 'Slow'), ('Debuff', 'Ranged')}
+                ('Sniper', 'Survival'), ('Sniper', 'Slow'), ('Debuff', 'Ranged'), ('Healing', 'Slow')}
 
-cool_combo_5 = {('DPS', 'Healing'), ('Healing', 'Slow'), ('Fast-Redeploy', 'Debuff'),
+cool_combo_5 = {('DPS', 'Healing'), ('Fast-Redeploy', 'Debuff'),
                 ('DP-Recovery', 'Support'), ('DPS', 'Shift'), ('Defender', 'Shift'), ('Defender', 'DPS'),
                 ('Defender', 'Survival'), ('Defense', 'DPS'), ('Defense', 'Shift'), ('Defense', 'Survival'),
                 ('Melee', 'Debuff'), ('Shift', 'Slow'), ('Specialist', 'Slow'), ('Survival', 'Specialist'),

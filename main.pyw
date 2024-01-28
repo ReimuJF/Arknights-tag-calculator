@@ -4,7 +4,9 @@ import re
 import tkinter as tk
 import tags5
 import tags4
-#pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+
+
+# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # if you have tesseract error
 
 
@@ -22,21 +24,23 @@ def get_image():
         image_out = enhancer.enhance(3)
         image_out.save('1.png', 'PNG')
         return image_out
-        #image_out.save('1.png', 'PNG')
+        # image_out.save('1.png', 'PNG')
     except AttributeError:
         pass
 
+
 def read_image() -> list:
-    #tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
+    # tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
     image = get_image()
     o_image = image if image else Image.open('1.png')
-    tag_list = re.sub('[.,_~;"]','',pytesseract.pytesseract.image_to_string(o_image, config='--psm 12'))
-    #tag_list = 'Survival Ranged Healing Support'
+    tag_list = re.sub('[.,_~*;"]', '', pytesseract.pytesseract.image_to_string(o_image, config='--psm 12'))
+    # tag_list = 'Survival Ranged Healing Support'
     return tag_list.split()
-  
+
+
 def get_combinations():
     tag_list = sorted(read_image())
-    txt_edit.insert(tk.END, f'{tag_list}\n')
+    txt_edit.insert(tk.END, f'{", ".join(tag_list)}\n')
     res = []
 
     for index, tag in enumerate(tag_list):
@@ -50,7 +54,7 @@ def get_combinations():
             res.append(f'{tag}: {tags5.tag_combo_5[tag]} | 5 star')
         elif tag in tags4.tag_combo_4:
             res.append(f'{tag}: {tags4.tag_combo_4[tag]} | 4 star')
-        for second_tag in tag_list[index+1:]:
+        for second_tag in tag_list[index + 1:]:
             tag_combo = (tag, second_tag)
             if tag_combo in tags5.tag_combo_5:
                 res.append(f"{' + '.join(tag_combo)}: {tags5.tag_combo_5[tag_combo]} | 5 star")

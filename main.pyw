@@ -7,22 +7,6 @@ import tags4
 #pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # if you have tesseract error
 
-# cool_combo_4 = {('AoE', 'Slow'), ('Caster', 'Slow'), ('DP-Recovery', 'Healing'),
-#                 ('DPS', 'Slow'), ('Guard', 'Slow'), ('Healing', 'Support'),
-#                 ('Melee', 'Slow'), ('Ranged', 'Survival'), ('Vanguard', 'Healing'),
-#                 ('AoE', 'Debuff'), ('Caster', 'Debuff'), ('Sniper', 'Debuff'), ('DPS', 'Support'),
-#                 ('Sniper', 'Survival'), ('Sniper', 'Slow'), ('Debuff', 'Ranged'), ('Healing', 'Slow')}
-#
-# cool_combo_5 = {('DPS', 'Healing'), ('Fast-Redeploy', 'Debuff'),
-#                 ('DP-Recovery', 'Support'), ('DPS', 'Shift'), ('Defender', 'Shift'), ('Defender', 'DPS'),
-#                 ('Defender', 'Survival'), ('Defense', 'DPS'), ('Defense', 'Shift'), ('Defense', 'Survival'),
-#                 ('Melee', 'Debuff'), ('Shift', 'Slow'), ('Specialist', 'Slow'), ('Survival', 'Specialist'),
-#                 ('Supporter', 'DPS'), ('Supporter', 'Debuff'), ('Vanguard', 'Support'),
-#                 ('Caster', 'Healing'), ('Defense', 'Guard'), ('AoE', 'Debuff'),
-#                 ('Nuker', 'Sniper'), ('Nuker', 'Ranged'), ('DPS', 'Specialist'), ("Support", "Survival")}
-#
-# guaranteed = {'Top', 'Nuker', 'Specialist', 'Summon', 'Support',
-#               'Debuff', 'Crowd-Control', 'Senior', 'Shift', 'Fast-Redeploy'}
 
 def get_image():
     txt_edit.delete("1.0", tk.END)
@@ -54,29 +38,7 @@ def get_combinations():
     tag_list = sorted(read_image())
     txt_edit.insert(tk.END, f'{tag_list}\n')
     res = []
-    # flag = False
 
-    # for i in tag_list:
-    #     if i == 'Top':
-    #         txt_edit.insert(tk.END, f'WOW! {i} Operator! You get free 6 star!\n')
-    #         flag = True
-    #     elif i == 'Senior':
-    #         txt_edit.insert(tk.END, f'{i} Operator! You get free 5 star!\n')
-    #         flag = True
-    #     elif i in guaranteed:
-    #         txt_edit.insert(tk.END, f'Solo tag {i}. 5 or 4 star.\n')
-    #         flag = True
-    #
-    # perm_tags = list(permutations(tag_list, 2))
-    # for i in perm_tags:
-    #     if i in cool_combo_5:
-    #         txt_edit.insert(tk.END, f'5 star {i}\n')
-    #         flag = True
-    #     elif i in cool_combo_4:
-    #         txt_edit.insert(tk.END, f'4 star {i}\n')
-    #         flag = True
-    # if not flag:
-    #     txt_edit.insert(tk.END, '\nno cool tags')
     for index, tag in enumerate(tag_list):
         if tag == 'Top':
             res.append(f'WOW! {tag} Operator! You get free 6 star!')

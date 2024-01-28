@@ -24,13 +24,11 @@ def get_image():
         image_out = enhancer.enhance(3)
         image_out.save('1.png', 'PNG')
         return image_out
-        # image_out.save('1.png', 'PNG')
     except AttributeError:
         pass
 
 
 def read_image() -> list:
-    # tag_list = (pytesseract.pytesseract.image_to_string(Image.open('1.png'), config='--psm 12')).replace(',','')
     image = get_image()
     o_image = image if image else Image.open('1.png')
     tag_list = re.sub('[.,_~*;"]', '', pytesseract.pytesseract.image_to_string(o_image, config='--psm 12'))

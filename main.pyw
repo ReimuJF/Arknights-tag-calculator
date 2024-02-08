@@ -1,7 +1,11 @@
-import pytesseract, pyperclip, re
+import pytesseract
+import pyperclip
+import re
 import tkinter as tk
+import tags5
+import tags4
 from PIL import Image, ImageGrab, ImageOps, ImageEnhance
-import tags5, tags4
+
 
 # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # if you have tesseract error

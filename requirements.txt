@@ -1,3 +1,5 @@
 pytesseract~=0.3.10
 Pillow>9.3.0
 numpy~=1.23.4
+
+pyperclip~=1.8.2

@@ -1,10 +1,7 @@
-import pytesseract
-from PIL import Image, ImageGrab, ImageOps, ImageEnhance
-import re
+import pytesseract, pyperclip, re
 import tkinter as tk
-import tags5
-import tags4
-
+from PIL import Image, ImageGrab, ImageOps, ImageEnhance
+import tags5, tags4
 
 # pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 # if you have tesseract error
@@ -59,10 +56,14 @@ def get_combinations():
             elif (tag, second_tag) in tags4.tag_combo_4:
                 res.append(f"{' + '.join(tag_combo)}: {tags4.tag_combo_4[tag_combo]} | 4 star")
 
-    if not res:
-        txt_edit.insert(tk.END, '\nNo guaranteed tags')
-    else:
-        txt_edit.insert(tk.END, f'\n'.join(res))
+    txt_edit.insert(tk.END, '\nNo guaranteed tags' if not res else f'\n'.join(res))
+
+
+def copy_text(event):
+    content = txt_edit.selection_get()
+    cleared_content = ''.join(content.split())
+    pyperclip.copy(cleared_content)
+    return "break"
 
 
 if __name__ == '__main__':
@@ -83,4 +84,5 @@ if __name__ == '__main__':
     btn_calc = tk.Button(frame_buttons, text='Calculate Tags', command=get_combinations)
     btn_calc.grid(row=0, column=0, sticky='we', padx=0, pady=5)
     frame_buttons.grid(row=0, column=0, sticky='ns')
+    txt_edit.bind("<Control-c>", copy_text)
     window.mainloop()

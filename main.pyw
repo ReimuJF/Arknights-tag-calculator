@@ -33,12 +33,12 @@ def read_image() -> list:
     image = get_image()
     o_image = image if image else Image.open('1.png')
     tag_list = re.sub('[.,_~*;"]', '', pytesseract.pytesseract.image_to_string(o_image, config='--psm 12'))
-    # tag_list = 'Survival Ranged Healing Support'
     return tag_list.split()
 
 
 def get_combinations() -> None:
     tag_list = sorted(read_image())
+
     txt_edit.insert(tk.END, f'{", ".join(tag_list)}\n')
     
     res = []
@@ -54,7 +54,8 @@ def get_combinations() -> None:
         elif tag in tag_combo.keys():
             set_tag = set((tag,))
             for second_tag in tag_combo[tag].keys():
-                tags = set_tag | set(second_tag if '+' in second_tag else second_tag.split('+'))
+
+                tags = set_tag | set((second_tag,) if not '+' in second_tag else second_tag.split('+'))
                 if tags.issubset(tag_list):
                     res.append(f"{' + '.join(tags)}: {tag_combo[tag][second_tag]["operator"]} |  {tag_combo[tag][second_tag]["rarity"]} stars")
     

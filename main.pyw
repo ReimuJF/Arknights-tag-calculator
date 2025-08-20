@@ -2,8 +2,8 @@ import pytesseract
 import pyperclip
 import re
 import tkinter as tk
-import tags5
-import tags4
+from tags import tag_combo
+#import tags4
 from PIL import Image, ImageGrab, ImageOps, ImageEnhance
 
 
@@ -37,29 +37,27 @@ def read_image() -> list:
     return tag_list.split()
 
 
-def get_combinations():
+def get_combinations() -> None:
     tag_list = sorted(read_image())
     txt_edit.insert(tk.END, f'{", ".join(tag_list)}\n')
+    
     res = []
+    for tag in set(tag_list):
 
-    for index, tag in enumerate(tag_list):
         if tag == 'Top':
             res.append(f'WOW! {tag} Operator! You get free 6 star!')
             continue
         elif tag == 'Senior':
             res.append(f'{tag} Operator! You get free 5 star!')
             continue
-        elif tag in tags5.tag_combo_5:
-            res.append(f'{tag}: {tags5.tag_combo_5[tag]} | 5 star')
-        elif tag in tags4.tag_combo_4:
-            res.append(f'{tag}: {tags4.tag_combo_4[tag]} | 4 star')
-        for second_tag in tag_list[index + 1:]:
-            tag_combo = (tag, second_tag)
-            if tag_combo in tags5.tag_combo_5:
-                res.append(f"{' + '.join(tag_combo)}: {tags5.tag_combo_5[tag_combo]} | 5 star")
-            elif (tag, second_tag) in tags4.tag_combo_4:
-                res.append(f"{' + '.join(tag_combo)}: {tags4.tag_combo_4[tag_combo]} | 4 star")
 
+        elif tag in tag_combo.keys():
+            set_tag = set((tag,))
+            for second_tag in tag_combo[tag].keys():
+                tags = set_tag | set(second_tag if '+' in second_tag else second_tag.split('+'))
+                if tags.issubset(tag_list):
+                    res.append(f"{' + '.join(tags)}: {tag_combo[tag][second_tag]["operator"]} |  {tag_combo[tag][second_tag]["rarity"]} stars")
+    
     txt_edit.insert(tk.END, '\nNo guaranteed tags' if not res else f'\n'.join(res))
 
 
